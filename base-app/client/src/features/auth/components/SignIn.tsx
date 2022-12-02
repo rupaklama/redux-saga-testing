@@ -1,15 +1,5 @@
 /* eslint-disable react/jsx-props-no-spreading */
-import {
-  Box,
-  Button,
-  Flex,
-  FormControl,
-  FormErrorMessage,
-  FormLabel,
-  Heading,
-  Input,
-  Stack,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, FormControl, FormErrorMessage, FormLabel, Heading, Input, Stack } from "@chakra-ui/react";
 import React from "react";
 import { useForm } from "react-hook-form";
 import { useHistory, useLocation } from "react-router-dom";
@@ -40,10 +30,7 @@ export function SignIn(): React.ReactElement {
   const history = useHistory();
   const location = useLocation();
 
-  const from =
-    location.state && location.pathname !== "/"
-      ? location.state.from
-      : { pathname: "/profile" };
+  const from = location.state && location.pathname !== "/" ? location.state.from : { pathname: "/profile" };
 
   React.useEffect(() => {
     // once the user is logged in, redirect back to referrer
@@ -53,14 +40,9 @@ export function SignIn(): React.ReactElement {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user]);
 
-  const onSubmit = (data: SignInDetails, action: AuthenticateAction) =>
-    dispatch(signInRequest({ ...data, action }));
-  const handleSignIn = handleSubmit((data: SignInDetails) =>
-    onSubmit(data, "signIn")
-  );
-  const handleSignUp = handleSubmit((data: SignInDetails) =>
-    onSubmit(data, "signUp")
-  );
+  const onSubmit = (data: SignInDetails, action: AuthenticateAction) => dispatch(signInRequest({ ...data, action }));
+  const handleSignIn = handleSubmit((data: SignInDetails) => onSubmit(data, "signIn"));
+  const handleSignUp = handleSubmit((data: SignInDetails) => onSubmit(data, "signUp"));
 
   // cancel signIn / signUp if user navigates away
   useWillUnmount(() => {
@@ -81,19 +63,10 @@ export function SignIn(): React.ReactElement {
           <Stack alignSelf="center">
             <Heading>Sign in to your account</Heading>
           </Stack>
-          <Box
-            rounded="lg"
-            bg="gray.50"
-            color="gray.900"
-            boxShadow="lg"
-            maxW="lg"
-            minW="lg"
-            p={8}
-            alignSelf="center"
-          >
+          <Box rounded="lg" bg="gray.50" color="gray.900" boxShadow="lg" maxW="lg" minW="lg" p={8} alignSelf="center">
             <Stack spacing={4}>
               <form data-testid="sign-in-form">
-                {formFields.map((field) => (
+                {formFields.map(field => (
                   <FormControl key={field.name} id={field.name} isRequired>
                     <FormLabel>{field.display}</FormLabel>
                     <Input
@@ -105,18 +78,10 @@ export function SignIn(): React.ReactElement {
                         required: true,
                       })}
                     />
-                    {errors[field.name] && (
-                      <FormErrorMessage>
-                        {field.display} is required
-                      </FormErrorMessage>
-                    )}
+                    {errors[field.name] && <FormErrorMessage>{field.display} is required</FormErrorMessage>}
                   </FormControl>
                 ))}
-                <Flex
-                  mt={4}
-                  justifyContent="flex-end"
-                  style={{ fontFamily: "Unica One" }}
-                >
+                <Flex mt={4} justifyContent="flex-end" style={{ fontFamily: "Unica One" }}>
                   <Button mr={2} variant="outline" onClick={handleSignUp}>
                     Sign up
                   </Button>

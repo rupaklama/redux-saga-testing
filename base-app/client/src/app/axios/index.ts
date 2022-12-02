@@ -12,4 +12,5 @@ export function getJWTHeader(user: User): jwtHeader {
 }
 
 const config: AxiosRequestConfig = { baseURL: baseUrl };
+
 export const axiosInstance = axios.create(config);

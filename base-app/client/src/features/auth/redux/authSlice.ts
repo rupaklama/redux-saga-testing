@@ -15,7 +15,9 @@ const getInitialState = (): AuthState => {
   const initialState: AuthState = {
     signInStatus: "idle",
   };
+
   const storedUser = getStoredUser();
+
   if (storedUser) initialState.userDetails = storedUser;
   return initialState;
 };
@@ -31,14 +33,14 @@ const createAuthSlice = (initialState: AuthState) =>
         state.userDetails = action.payload;
         setStoredUser(action.payload);
       },
-      signOut: (state) => {
+      signOut: state => {
         state.userDetails = undefined;
         clearStoredUser();
       },
-      startSignIn: (state) => {
+      startSignIn: state => {
         state.signInStatus = "pending";
       },
-      endSignIn: (state) => {
+      endSignIn: state => {
         state.signInStatus = "idle";
       },
     },

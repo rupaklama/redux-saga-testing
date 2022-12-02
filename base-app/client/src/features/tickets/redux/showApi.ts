@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
-import dayjs from "dayjs";
 
 import { Show } from "../../../../../shared/types";
 import { baseUrl } from "../../../app/axios/constants";
@@ -13,8 +12,7 @@ export const showApi = createApi({
     getAllShows: builder.query<Array<Show>, null>({
       query: () => "",
       transformResponse: (data: { shows: Array<Show> }) => {
-        const today = dayjs();
-        return data.shows.filter((show) => dayjs(show.scheduledAt) >= today);
+        return data.shows;
       },
     }),
     getShowById: builder.query<Show, string>({

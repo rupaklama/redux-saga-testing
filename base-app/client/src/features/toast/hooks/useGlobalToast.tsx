@@ -12,9 +12,7 @@ export const toastConfig: UseToastOptions = {
 
 export function useGlobalToast(): null {
   const dispatch = useAppDispatch();
-
   const toast = useToast(toastConfig);
-
   const toastOptions = useAppSelector(state => state.toast.toastOptions);
 
   React.useEffect(() => {
@@ -27,6 +25,5 @@ export function useGlobalToast(): null {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [toastOptions]);
-
   return null;
 }
